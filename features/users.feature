@@ -9,13 +9,14 @@ Feature: REST API Examples covering Create,Read,Update and Delete
       "job": "leader"
     }
     """
-    When I make a POST request to "/users"
+    When I make a POST request to "/api/users"
     Then The response property "name" should be "morpheus"
     And The response property "job" should be "leader"
     Then The response status code should be "201"
 
+
   Scenario Outline: Submit a GET request to fetch existing users
-    When I make a GET request to "/users/<id>"
+    When I make a GET request to "/api/users/<id>"
     Then The response status code should be "200"
     Then The response property "data.id" should be "<id>"
     And The response property "data.email" should be "<email>"
@@ -29,7 +30,7 @@ Feature: REST API Examples covering Create,Read,Update and Delete
 
 
   Scenario: DELETE request to delete an existing user
-    When I make a DELETE request to "/users/2"
+    When I make a DELETE request to "/api/users/2"
     Then The response status code should be "204"
 
 
@@ -40,7 +41,7 @@ Feature: REST API Examples covering Create,Read,Update and Delete
       "email": "peter@klaven"
     }
     """
-    When I make a POST request to "/login"
+    When I make a POST request to "/api/login"
     Then The response status code should be "400"
 
 
@@ -52,7 +53,7 @@ Feature: REST API Examples covering Create,Read,Update and Delete
       "job": "zion resident"
     }
     """
-    When I make a PUT request to "/users/2"
+    When I make a PUT request to "/api/users/2"
     Then The response property "name" should be "morpheus"
     And The response property "job" should be "zion resident"
     And The response status code should be "200"
